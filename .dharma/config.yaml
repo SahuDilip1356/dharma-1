@@ -1,0 +1,84 @@
+version: 1.0.0
+name: dharma
+
+phases:
+  - id: p0
+    name: intent
+    skills: [intent, route]
+    exit_evidence: PRD contract committed; assumptions surfaced
+  - id: p1
+    name: plan
+    skills: [plan-ceo, plan-eng, plan-design]
+    exit_evidence: Architecture diagram + scope decision + design rating
+  - id: p2
+    name: design
+    skills: [design-shotgun, design-build]
+    exit_evidence: Approved variant + production HTML
+  - id: p3
+    name: build
+    skills: [karpathy-check, investigate, review]
+    exit_evidence: Tests pass + simplicity check + review clean
+  - id: p4
+    name: verify
+    skills: [qa, cso, codex, evidence]
+    exit_evidence: Real-browser pass + security clean + cross-model agree + ledger receipt
+  - id: p5
+    name: ship
+    skills: [risk-gate, ship, land-and-deploy, canary]
+    exit_evidence: PR merged + deploy verified + canary green
+  - id: p6
+    name: learn
+    skills: [retro, benchmark]
+    exit_evidence: Episodic digest + decisions extracted
+
+overlays:
+  risk:
+    enabled: true
+    triggers:
+      - auth/
+      - "**/auth/**"
+      - payments/
+      - "**/billing/**"
+      - migrations/
+      - "**/*.sql"
+      - prompts/
+      - "**/llm/**"
+      - "**/agents/**"
+      - "*.policy.*"
+      - "**/permissions/**"
+    forced_gates: [cso, codex, qa]
+  ai:
+    enabled: true
+    triggers:
+      - "**/llm/**"
+      - "**/prompts/**"
+      - "**/agents/**"
+      - "**/embeddings/**"
+    forced_gates: [ai-economics, ai-safety, ai-observability]
+
+memory:
+  semantic: memory/semantic.md
+  episodic: memory/episodic/
+  working: memory/STATE.md
+  staleness_warning_days: 7
+
+completion_language:
+  enforced: true
+  banned_phrases:
+    - "should work"
+    - "probably passes"
+    - "probably works"
+    - "I believe it's fixed"
+    - "looks correct"
+    - "seems to work"
+    - "should be fine"
+  valid_states:
+    - "Implemented and verified with"
+    - "Implemented but not runtime-verified"
+    - "Planned only"
+    - "Partially complete"
+    - "Blocked"
+
+telemetry:
+  enabled: false
+  endpoint: null

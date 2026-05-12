@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude / Dharma worktree state
+.claude/worktrees/
+
+# Logs and runtime telemetry
+logs/
+*.jsonl
+!ai_runners/evals/*.json
+
+# Project-specific runtime memory (instances only; templates kept)
+memory/STATE.md
+memory/semantic.md
+memory/decisions.md
+memory/learnings.md
+memory/episodic/*
+!memory/_template/
+!memory/_template/**
+!memory/episodic/.gitkeep

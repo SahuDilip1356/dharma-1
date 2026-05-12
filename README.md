@@ -325,8 +325,8 @@ dharma-1/
 
 - ✅ **M1 — Foundation** (shipped): 23 skill contracts, 3-drawer memory, evidence-ledger hook, risk-overlay hook, deterministic router, 60-second installer.
 - ✅ **M2 — AI overlay** (shipped): `economics.py` + `safety.py` + `observability.py` + `overlay.py` + CLI; 38 unit tests passing; default adversarial eval set.
+- ✅ **M3 — Distribution** (partial): landing page live at https://sahudilip1356.github.io/dharma-1, Show HN drafts at [docs/SHOW_HN.md](docs/SHOW_HN.md). Pending: launch timing + optional telemetry.
 - 🚧 **M2.5 — Dogfood**: install Dharma 1.0 in a real product repo, run `/route` on real tasks, fix what breaks first.
-- 🚧 **M3 — Distribution**: GitHub Pages site, install demo, optional usage telemetry, Show HN launch.
 - 🚧 **M4 — Provider adapters**: drop-in adapters for OpenAI / Anthropic / Google SDKs so the overlay wires up in one line.
 
 ---

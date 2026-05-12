@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharma 1.0 — Build with role. Ship with evidence.</title>
+<meta name="description" content="A unified framework for AI-assisted product development. The synthesis of gstack's velocity and Dharma 0.x's discipline. 23 skills, 6 phases, AI-native, 60-second install.">
+
+<meta property="og:title" content="Dharma 1.0 — Build with role. Ship with evidence.">
+<meta property="og:description" content="A unified framework for AI-assisted product development. 23 skills, 6 phases, AI-native, 60-second install.">
+<meta property="og:url" content="https://sahudilip1356.github.io/dharma-1/">
+<meta property="og:type" content="website">
+
+<style>
+:root {
+  --bg: #fbfaf7;
+  --fg: #1a1a1a;
+  --muted: #555;
+  --line: #e6e3dc;
+  --accent: #1e5a3a;
+  --code-bg: #f3f1ec;
+  --code-fg: #2d2d2d;
+  --max: 760px;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141413;
+    --fg: #e8e6e1;
+    --muted: #999;
+    --line: #2a2925;
+    --accent: #6dc28f;
+    --code-bg: #1e1d1b;
+    --code-fg: #cfcdc8;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+header { margin-bottom: 56px; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+h1 {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+.tagline {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+.lede {
+  font-size: 19px;
+  color: var(--fg);
+  margin: 0 0 28px;
+  max-width: 640px;
+}
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-family: var(--mono);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--fg);
+  background: var(--bg);
+  transition: all 0.15s;
+}
+.cta a.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+.cta a:hover { transform: translateY(-1px); }
+section { margin-top: 56px; }
+h2 {
+  font-size: 14px;
+  font-family: var(--mono);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+p { margin: 0 0 16px; color: var(--fg); }
+p.muted { color: var(--muted); }
+code, pre {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--code-fg);
+}
+code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+pre {
+  background: var(--code-bg);
+  padding: 16px 20px;
+  border-radius: 6px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  line-height: 1.55;
+}
+pre code { background: none; padding: 0; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+.card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+}
+.card .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  display: block;
+}
+.card h3 { font-size: 18px; margin-bottom: 6px; }
+.card p { font-size: 14.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 16px;
+}
+th, td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+td.strong { font-weight: 600; color: var(--accent); }
+td code { font-size: 12.5px; }
+.ascii {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-x: auto;
+  background: var(--code-bg);
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--code-fg);
+}
+footer {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+footer a { color: var(--muted); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+footer a:hover { color: var(--accent); }
+ul.lineage { padding-left: 18px; margin: 12px 0 0; }
+ul.lineage li { margin-bottom: 8px; }
+.pull-quote {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--muted);
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  margin: 32px 0;
+}
+@media (max-width: 600px) {
+  h1 { font-size: 32px; }
+  .lede { font-size: 17px; }
+  .wrap { padding: 40px 20px 64px; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header>
+    <div class="eyebrow">Dharma 1.0 — Alpha</div>
+    <h1>Build with role.<br>Ship with evidence.</h1>
+    <p class="tagline">A framework for AI-assisted product development.</p>
+    <p class="lede">
+      The synthesis of <a href="https://github.com/garrytan/gstack">gstack</a>'s velocity
+      and <a href="https://github.com/SahuDilip1356/Dharma">Dharma 0.x</a>'s discipline.
+      23 skills, 6 phases, AI-native by default, 60-second install.
+    </p>
+    <div class="cta">
+      <a class="primary" href="https://github.com/SahuDilip1356/dharma-1">View on GitHub</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/SahuDilip1356/dharma-1#the-23-skills">The 23 skills</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Why this exists</h2>
+    <p>
+      AI coding assistants are fast. They are also undisciplined by default.
+      The same session that writes clean code will also skip UX thinking, miss
+      accessibility on user-facing screens, claim "it's done" based on belief
+      rather than evidence, and ship LLM features with no token budget, no
+      adversarial test, and no observability.
+    </p>
+    <p class="muted">
+      These are not model failures. They are process failures. Dharma 1.0
+      solves process failures without slowing you down.
+    </p>
+  </section>
+
+  <section>
+    <h2>The three bets</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01 — Velocity</span>
+        <h3>Roles, not prompts</h3>
+        <p>23 named skills with decision frameworks. CEO scopes. Designer rates 8 dimensions. QA opens a real browser. Specialization compounds.</p>
+      </div>
+      <div class="card">
+        <span class="num">02 — Discipline</span>
+        <h3>Evidence over belief</h3>
+        <p>"Should work" is banned at commit time. Five valid completion states only. Auth/payments/AI diffs trigger forced gates before push.</p>
+      </div>
+      <div class="card">
+        <span class="num">03 — AI-native</span>
+        <h3>LLMs as production</h3>
+        <p>First framework with executable economics + safety eval + observability. Token budgets, adversarial tests, drift detection. 38 unit tests, pure stdlib.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Install — 60 seconds</h2>
+<pre><code>git clone https://github.com/SahuDilip1356/dharma-1.git
+cd dharma-1
+./install.sh /path/to/your/project</code></pre>
+    <p class="muted">
+      Copies the 23-skill catalog. Installs <code>commit-msg</code> and <code>pre-push</code>
+      git hooks. Scaffolds 3-drawer memory. Wires the router + AI overlay.
+      Requires Python 3.9+ and Git. No external SDKs.
+    </p>
+  </section>
+
+  <section>
+    <h2>Your first run</h2>
+<pre><code>$ .dharma/dharma route "add a chatbot for patient FAQs"
+
+[Route B — New Feature]
+  Start:                 /intent
+  Overlays:              risk, ai
+  Forced gates:          /cso, /codex, /qa, /ai-economics,
+                         /ai-safety, /ai-observability
+  Exit evidence needed:  PRD contract; Plan complete;
+                         Evidence ledger</code></pre>
+    <p class="muted">
+      The router never auto-executes. It classifies your task and suggests
+      a starting skill plus required gates. The human decides.
+    </p>
+  </section>
+
+  <section>
+    <h2>The AI overlay — the moat</h2>
+    <p>
+      Drop-in wrapper for any LLM callable. Tracks cost, emits telemetry,
+      enforces budget. Runs adversarial evals. Detects distribution drift.
+      Provider-agnostic. Pure-stdlib Python. 38 tests.
+    </p>
+<pre><code>from ai_runners import AIOverlay, EvalHarness
+
+overlay = AIOverlay(
+    model_fn=my_llm,
+    model_name="claude-sonnet-4-6",
+    ceiling_usd=10.0,
+    telemetry_path="logs/llm.jsonl",
+)
+
+response = overlay("Summarize this document...")
+
+# Run the safety eval through the same overlay
+# (so eval costs are tracked too)
+harness = EvalHarness(model_fn=overlay, evals_dir="ai_runners/evals")
+print(harness.run_all().summary())
+# {'overall_pass_rate': 0.92,
+#  'categories': {'jailbreak': {'pass': 5, 'rate': 1.0}, ...}}</code></pre>
+  </section>
+
+  <section>
+    <h2>Architecture</h2>
+<div class="ascii">OVERLAYS (always on, fire conditionally)
+  Risk Overlay  → auth/payments/AI/migrations → forced gates
+  AI Overlay    → LLM features → economics + safety + obs
+
+P0 INTENT → P1 PLAN → P2 DESIGN → P3 BUILD
+                                       ↓
+P4 VERIFY → P5 SHIP → P6 LEARN → (loop)
+
+INFRASTRUCTURE
+  3-drawer memory (semantic / episodic / working STATE.md)
+  Evidence ledger (banned-phrase enforcement)
+  Deterministic router (auto-classifies work → suggests skill)</div>
+  </section>
+
+  <section>
+    <h2>How it compares</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Axis</th>
+          <th>gstack</th>
+          <th>Dharma 0.x</th>
+          <th>Dharma 1.0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Primary bet</td><td>Velocity</td><td>Discipline</td><td class="strong">Both</td></tr>
+        <tr><td>Skill count</td><td>23</td><td>38</td><td class="strong">23</td></tr>
+        <tr><td>Evidence enforcement</td><td>None</td><td>Template</td><td class="strong">Commit-msg hook</td></tr>
+        <tr><td>Risk overlay</td><td>Opt-in</td><td>Route G</td><td class="strong">Pre-push hook</td></tr>
+        <tr><td>AI as production layer</td><td>No</td><td>Spec only</td><td class="strong">Executable</td></tr>
+        <tr><td>Memory model</td><td>1 bucket</td><td>3 drawers (spec)</td><td class="strong">3 drawers (built)</td></tr>
+        <tr><td>Real-browser QA</td><td>Yes</td><td>Playwright</td><td class="strong">Yes</td></tr>
+        <tr><td>Cross-model review</td><td><code>/codex</code></td><td>None</td><td class="strong"><code>/codex</code></td></tr>
+        <tr><td>Deploy → monitor loop</td><td>Yes</td><td>Stops at finish</td><td class="strong">Yes</td></tr>
+        <tr><td>License</td><td>MIT</td><td>MIT</td><td class="strong">MIT</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Status</h2>
+    <p>
+      <strong>M1 Foundation</strong> shipped — 23 skill contracts, 3-drawer memory, evidence ledger, risk overlay, deterministic router, 60-second installer.
+      <br><br>
+      <strong>M2 AI overlay</strong> shipped — economics, safety, observability, unified overlay, CLI, default adversarial eval set, 38 unit tests passing.
+      <br><br>
+      <strong>M2.5 Dogfood</strong> in progress — installing Dharma 1.0 in a real product repo to find what breaks first.
+      <br><br>
+      <strong>M3 Distribution</strong> — this page exists because of it. Next: provider adapters (M4) for one-line OpenAI / Anthropic / Google wiring.
+    </p>
+  </section>
+
+  <p class="pull-quote">
+    The framework that gets used wins. Dharma 1.0 gets used<br>
+    because it removes regret without removing speed.
+  </p>
+
+  <footer>
+    <p>
+      <strong>Lineage</strong>
+    </p>
+    <ul class="lineage">
+      <li><a href="https://github.com/garrytan/gstack">gstack</a> by Garry Tan — the role/velocity model, real-browser QA, deploy loop.</li>
+      <li><a href="https://github.com/SahuDilip1356/Dharma">Dharma 0.x</a> by Dilip Sahu — evidence ledger, three-drawer memory, AI-as-production thesis.</li>
+      <li>Andrej Karpathy — the four failure modes baked into <code>/karpathy-check</code>.</li>
+      <li>Boris Churney (Move Slow to Move Fast) — the rhythm: P0 + P1 non-negotiable, post-ship reflection closes the loop.</li>
+    </ul>
+    <p style="margin-top: 32px;">
+      MIT licensed.
+      Source on <a href="https://github.com/SahuDilip1356/dharma-1">GitHub</a>.
+      Built by <a href="https://github.com/SahuDilip1356">Dilip Sahu</a>.
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>
